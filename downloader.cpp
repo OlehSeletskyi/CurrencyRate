@@ -1,4 +1,6 @@
 #include "downloader.h"
+#include "qlistmodel.h"
+#include "coin.h"
 
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -8,6 +10,7 @@
 #include <QUrl>
 #include <QString>
 #include <QDebug>
+#include <QQmlListProperty>
 
 Downloader::Downloader(QObject *parent) : QObject(parent)
 {
@@ -27,6 +30,11 @@ void Downloader::onResult(QNetworkReply *reply)
         {
             QJsonObject subtree = root.at(i).toObject();
             qDebug() << "currency: " << subtree.value("txt").toString() + " = " + subtree.value("rate").toDouble();
+            Coin *coin = new Coin(this);
+            coin->setName(subtree.value("txt").toString());
+            coin->setShortName(subtree.value("cc").toString());
+            coin->setRate(subtree.value("rate").toString());
+//            QListModel::appendData( , coin);
         }
     }
     reply->deleteLater();

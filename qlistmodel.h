@@ -1,37 +1,37 @@
 #ifndef QLISTMODEL_H
 #define QLISTMODEL_H
 
-#include <QAbstractListModel>
-#include <QStringList>
+#include <QObject>
+#include <QQmlListProperty>
 
-//#include <QObject>
-//#include <QQmlListProperty>
+class Coin;
 
-class QListModel : public QAbstractListModel
+class QListModel : public QObject
+
 {
     Q_OBJECT
+    Q_PROPERTY(QQmlListProperty<Coin> data READ data NOTIFY dataChanged)
+    Q_CLASSINFO("DefaultProperty", "data")
 public:
-    enum Roles {
-        NameRole = Qt::UserRole + 1,
-        ShortNameRole,
-        RateRole
-    };
 
     QListModel(QObject *parent = nullptr);
 
-    virtual int rowCount(const QModelIndex &parent) const;
-
-    virtual QVariant data(const QModelIndex &index, int role) const;
-
-    virtual QHash<int,QByteArray> roleNames() const;
+    QQmlListProperty<Coin> data();
 
     Q_INVOKABLE void add();
 
-//    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
-//    Qt::ItemFlags flags(const QModelIndex & index) const;
+signals:
+
+    void dataChanged();
 
 private:
-    QStringList mData;
+
+    static void appendData(QQmlListProperty<Coin> *list, Coin *value);
+    static int countData(QQmlListProperty<Coin> *list);
+    static Coin *atData(QQmlListProperty<Coin> *list, int index);
+    static void clearData(QQmlListProperty<Coin> *list);
+
+    QList<Coin*> mData;
 };
 
 #endif // QLISTMODEL_H

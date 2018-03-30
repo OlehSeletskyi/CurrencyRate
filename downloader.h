@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QNetworkAccessManager>
+#include "qlistmodel.h"
 
 class Downloader : public QObject
 {

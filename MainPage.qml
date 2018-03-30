@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtQuick.XmlListModel 2.0
 import QListModel 1.0
+import Coin 1.0
 
 
 Item {
@@ -53,13 +54,26 @@ Item {
             QListModel{
                 id: dataModel
 
+                data: [
+                      Coin {
+                          name: "Злотий"
+                          shortName:  "ZLT"
+                          rate: "7.59"
+                      },
+                      Coin {
+                        name: "Євро"
+                        shortName: "EUR"
+                        rate: "32.09"
+                      }
+                ]
+
             }
 
             ListView {
                 id: listView
                 Layout.preferredWidth: columnLayout.width
                 Layout.fillHeight: true
-                model: dataModel.data()
+                model: dataModel.data
                 spacing: 15
                 delegate: ItemDelegate {
                     Rectangle {
@@ -82,19 +96,19 @@ Item {
                                 Text {
                                     font.pointSize: 18
                                     font.bold: true
-                                    text: cc
+                                    text: modelData.shortName
                                 }
                                 Text {
                                     anchors.horizontalCenter: currencyRowLayout.horizontalCenter
                                     font.pointSize: 18
                                     font.bold: true
-                                    text: rate
+                                    text: modelData.rate
                                 }
                             }
                             Text {
                                 font.pointSize: 12
                                 font.bold: true
-                                text: txt
+                                text: modelData.name
                             }
                         }
                     }
