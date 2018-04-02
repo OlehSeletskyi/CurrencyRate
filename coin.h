@@ -1,17 +1,13 @@
 #ifndef COIN_H
 #define COIN_H
 
-#include <QObject>
+#include <QString>
 
-class Coin : public QObject
+class Coin
 {
-    Q_OBJECT
-    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
-    Q_PROPERTY(QString shortName READ shortName WRITE setShortName NOTIFY shortNameChanged)
-    Q_PROPERTY(QString rate READ rate WRITE setRate NOTIFY rateChanged)
-
 public:
-    explicit Coin(QObject *parent = nullptr);
+    Coin();
+    Coin(const QString &name, const QString &shortName, const QString &rate);
 
     QString name() const;
     QString shortName() const;
@@ -20,17 +16,12 @@ public:
     void setShortName(QString shortName);
     void setRate(QString rate);
 
-signals:
-    void nameChanged(QString name);
-    void shortNameChanged(QString shortName);
-    void rateChanged(QString rate);
-
 private:
     QString mNama;
     QString mShortName;
     QString mRate;
 
-public slots:
+//public slots:
 };
 
 #endif // COIN_H

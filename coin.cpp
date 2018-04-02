@@ -1,8 +1,12 @@
 #include "coin.h"
 
-Coin::Coin(QObject *parent) : QObject(parent)
+Coin::Coin()
 {
+}
 
+Coin::Coin(const QString &name, const QString &shortName, const QString &rate)
+    : mNama(name), mShortName(shortName), mRate(rate)
+{
 }
 
 QString Coin::name() const
@@ -27,7 +31,7 @@ void Coin::setName(QString name)
         return;
     }
     mNama = name;
-    emit nameChanged(mNama);
+//    emit nameChanged(mNama);
 }
 
 void Coin::setShortName(QString shortName)
@@ -37,7 +41,7 @@ void Coin::setShortName(QString shortName)
         return;
     }
     mShortName = shortName;
-    emit shortNameChanged(mShortName);
+//    emit shortNameChanged(mShortName);
 }
 
 void Coin::setRate(QString rate)
@@ -47,5 +51,5 @@ void Coin::setRate(QString rate)
         return;
     }
     mRate = rate;
-    emit rateChanged(mRate);
+//    emit rateChanged(mRate);
 }

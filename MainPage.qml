@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtQuick.XmlListModel 2.0
-import QListModel 1.0
+//import QListModel 1.0
 
 
 Item {
@@ -50,16 +50,16 @@ Item {
 //            XmlRole { name: "cc"; query: "cc/string()" }
 //        }
 
-            QListModel{
-                id: dataModel
+//            QListModel{
+//                id: dataModel
 
-            }
+//            }
 
             ListView {
                 id: listView
                 Layout.preferredWidth: columnLayout.width
                 Layout.fillHeight: true
-                model: dataModel.data()
+                model: myListModel
                 spacing: 15
                 delegate: ItemDelegate {
                     Rectangle {
@@ -82,7 +82,7 @@ Item {
                                 Text {
                                     font.pointSize: 18
                                     font.bold: true
-                                    text: cc
+                                    text: shortName
                                 }
                                 Text {
                                     anchors.horizontalCenter: currencyRowLayout.horizontalCenter
@@ -94,7 +94,7 @@ Item {
                             Text {
                                 font.pointSize: 12
                                 font.bold: true
-                                text: txt
+                                text: name
                             }
                         }
                     }
