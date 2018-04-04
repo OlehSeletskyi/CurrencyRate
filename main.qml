@@ -13,7 +13,7 @@ Window {
     minimumWidth: 300
     minimumHeight: 380
     title: qsTr("Currency Rate")
-    color: "#848484"
+    color: "#e0e0e0"
 
 
     StackView {

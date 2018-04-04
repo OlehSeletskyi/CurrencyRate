@@ -10,8 +10,8 @@ Item {
         Image {
             Layout.alignment: Qt.AlignHCenter
             source: "ico-money.png"
-            sourceSize.width: 200
-            sourceSize.height: 200
+            sourceSize.width: 250
+            sourceSize.height: 250
         }
         MyButton
         {
@@ -20,15 +20,15 @@ Item {
             width: 150
             Layout.alignment: Qt.AlignHCenter
 
-            hoverColor: "green"
-            pressColor: "green"
+            borderWidth: 0
+            hoverColor: "#00867d"
+            pressColor: "#00867d"
             fontSize: 18
 
             buttonText: "Гледіти"
             onClicked:
             {
                 stackView.push(mainPageStackComponent)
-
             }
         }
     }

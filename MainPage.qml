@@ -4,84 +4,117 @@ import QtQuick.Controls 2.2
 import QtQuick.XmlListModel 2.0
 
 Item {
+    id: myitem
 
     ColumnLayout {
         id: columnLayout
         spacing: 10
         anchors.fill: parent
-        anchors.margins: 5
-        Text {
-            id: currencyRate
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            font.pointSize: 20
-            font.bold: true
-            text: "Курс валюти"
-            color: "#FAFAFA"
-        }
+//        anchors.margins: 5
+        Rectangle {
+            Layout.preferredWidth: columnLayout.width
+            height: 60
+            color: "#00867d"
+            RowLayout {
+                id: rowlayout
+                Layout.preferredWidth: columnLayout.width
 
+                MyButton {
+                    id: back
+                    height: 25
+                    width: 25
+                    Layout.alignment: Qt.AlignLeft
+
+                    color: "transparent"
+                    hoverColor: "#82e9de"
+                    pressColor: "#82e9de"
+
+                    fontSize: 18
+                    borderRadius: 15
+                    borderWidth: 0
+
+                    buttonText: "<"
+                    onClicked: {
+                        stackView.push(startPageStackComponent)
+                    }
+                }
+
+                Text {
+                    id: currencyRate
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                    font.pointSize: 20
+                    font.bold: true
+                    text: "Курс валюти"
+                    color: "#FAFAFA"
+                }
+            }
+        }
         TextField {
             id: findCurrency
+            Layout.preferredWidth: myitem.width - 10
+            Layout.leftMargin: 5
             font.pointSize: 12
-            color: "#FAFAFA"
             placeholderText: "Пошук валюти"
             onTextChanged: {
                 MyProxyModel.setFilterFixedString(text)
             }
         }
-            ListView {
-                id: listView
-                Layout.preferredWidth: columnLayout.width
-                Layout.fillHeight: true
-                clip : true
-                model: MyProxyModel
-                spacing: 15
-                delegate: ItemDelegate {
-                    Rectangle {
-                        id: currency
-                        width: columnLayout.width
-                        height: 55
-                        color: "#424242"
-                        radius: 7
-                        ColumnLayout {
-                            id: currencyColumnLayout
-                            width: currency.width
+        ListView {
+            id: listView
+            Layout.preferredWidth: myitem.width - 10
+            Layout.fillHeight: true
+            Layout.leftMargin: 5
+            clip : true
+            spacing: 15
+
+            model: MyProxyModel
+
+            delegate: ItemDelegate {
+                Rectangle {
+                    id: currency
+                    width: listView.width
+                    height: 55
+                    color: "#26a69a"
+                    radius: 7
+                    ColumnLayout {
+                        id: currencyColumnLayout
+                        width: currency.width
+                        anchors.fill: parent
+                        anchors.leftMargin: 5
+                        anchors.rightMargin: 5
+                        RowLayout {
+                            id: currencyRowLayout
                             anchors.fill: parent
-                            anchors.leftMargin: 5
-                            anchors.rightMargin: 5
-                            RowLayout {
-                                id: currencyRowLayout
-                                anchors.fill: parent
-                                width: currency.width
-                                height: currency.height
-                                Text {
-                                    font.pointSize: 18
-                                    font.bold: true
-                                    text: shortName
-                                    color: "#013ADF"
-                                }
-                                Text {
-                                    anchors.horizontalCenter: currencyRowLayout.horizontalCenter
-                                    font.pointSize: 18
-                                    font.bold: true
-                                    text: rate
-                                    color: "#E6E6E6"
-                                }
-                                Text {
-                                    anchors.right: currencyRowLayout.right
-                                    font.pointSize: 12
-                                    text: rateDifference
-                                    color: rateDifference >= 0 ? "#00FF00" : "red"
-                                }
+                            width: currency.width
+                            height: currency.height
+                            Text {
+                                font.pointSize: 18
+                                font.bold: true
+                                text: shortName
                             }
                             Text {
-                                font.pointSize: 12
+                                anchors.horizontalCenter: currencyRowLayout.horizontalCenter
+                                font.pointSize: 18
                                 font.bold: true
-                                text: name
-                                color: "#0080FF"
+                                text: rate
+                                color: "white"
                             }
+                            Text {
+                                anchors.right: currencyRowLayout.right
+                                font.pointSize: 13
+                                text: rateDifference == 0 ? "0" : rateDifference
+                                color: rateDifference >= 0 ?(rateDifference == 0 ? "#0000FF" : "#00FF00") : "#FF0000"
+                            }
+                        }
+                        Text {
+                            font.pointSize: 13
+                            font.bold: true
+                            text: name
+                            color: "#610B0B"
                         }
                     }
                 }
             }
+        }
     }
 }

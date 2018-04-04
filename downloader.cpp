@@ -73,7 +73,7 @@ void Downloader::writeModel() {
             coin.setName(subtree.value("txt").toString());
             coin.setShortName(subtree.value("cc").toString());
             coin.setRate(subtree.value("rate").toDouble());
-            QString rDifference = QString::number(rateDifference, 'g', 3);
+            QString rDifference = QString::number(rateDifference, 'f', 2);
             coin.setRateDifference(rDifference);
             listModel->addCoin(coin);
         }
