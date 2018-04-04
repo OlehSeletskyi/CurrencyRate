@@ -6,13 +6,14 @@ import QtQuick.Controls 2.2
 
 Window {
     visible: true
-    width: 250
+    width: 300
     height: 380
-    maximumWidth: 250
+//    maximumWidth: 250
 //    maximumHeight: 380
-    minimumWidth: 250
+    minimumWidth: 300
     minimumHeight: 380
     title: qsTr("Currency Rate")
+    color: "#848484"
 
 
     StackView {
@@ -20,6 +21,7 @@ Window {
             anchors.fill: parent
             focus: true
             initialItem: startPageStackComponent
+
 
             Component {
                 id: startPageStackComponent

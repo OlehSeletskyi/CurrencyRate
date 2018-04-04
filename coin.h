@@ -7,19 +7,22 @@ class Coin
 {
 public:
     Coin();
-    Coin(const QString &name, const QString &shortName, const QString &rate);
+    Coin(const QString &name, const QString &shortName, const double &rate);
 
     QString name() const;
     QString shortName() const;
-    QString rate() const;
+    double rate() const;
+    QString rateDifference() const;
     void setName(QString name);
     void setShortName(QString shortName);
-    void setRate(QString rate);
+    void setRate(double rate);
+    void setRateDifference(QString rateDifference);
 
 private:
     QString mNama;
     QString mShortName;
-    QString mRate;
+    double mRate;
+    QString mRateDifference;
 
 //public slots:
 };

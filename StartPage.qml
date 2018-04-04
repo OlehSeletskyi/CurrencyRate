@@ -28,6 +28,7 @@ Item {
             onClicked:
             {
                 stackView.push(mainPageStackComponent)
+
             }
         }
     }

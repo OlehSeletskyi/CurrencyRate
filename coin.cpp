@@ -4,7 +4,7 @@ Coin::Coin()
 {
 }
 
-Coin::Coin(const QString &name, const QString &shortName, const QString &rate)
+Coin::Coin(const QString &name, const QString &shortName, const double &rate)
     : mNama(name), mShortName(shortName), mRate(rate)
 {
 }
@@ -19,9 +19,13 @@ QString Coin::shortName() const
     return mShortName;
 }
 
-QString Coin::rate() const
+double Coin::rate() const
 {
     return mRate;
+}
+QString Coin::rateDifference() const
+{
+    return mRateDifference;
 }
 
 void Coin::setName(QString name)
@@ -44,7 +48,7 @@ void Coin::setShortName(QString shortName)
 //    emit shortNameChanged(mShortName);
 }
 
-void Coin::setRate(QString rate)
+void Coin::setRate(double rate)
 {
     if(mRate == rate)
     {
@@ -52,4 +56,13 @@ void Coin::setRate(QString rate)
     }
     mRate = rate;
 //    emit rateChanged(mRate);
+}
+
+void Coin::setRateDifference(QString rateDifference)
+{
+    if(mRateDifference == rateDifference)
+    {
+        return;
+    }
+    mRateDifference = rateDifference;
 }

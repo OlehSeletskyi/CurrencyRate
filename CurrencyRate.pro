@@ -16,7 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     downloader.cpp \
     coin.cpp \
-    mylistmodel.cpp
+    mylistmodel.cpp \
+    myproxymodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -34,4 +35,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     downloader.h \
     coin.h \
-    mylistmodel.h
+    mylistmodel.h \
+    myproxymodel.h

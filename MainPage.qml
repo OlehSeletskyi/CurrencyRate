@@ -2,8 +2,6 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtQuick.XmlListModel 2.0
-//import QListModel 1.0
-
 
 Item {
 
@@ -18,83 +16,68 @@ Item {
             font.pointSize: 20
             font.bold: true
             text: "Курс валюти"
+            color: "#FAFAFA"
         }
 
         TextField {
             id: findCurrency
             font.pointSize: 12
-
+            color: "#FAFAFA"
             placeholderText: "Пошук валюти"
+            onTextChanged: {
+                MyProxyModel.setFilterFixedString(text)
+            }
         }
-//        Repeater {
-//               model: ListModel {
-//                   id: theModel
-//                   ListElement { shortName: "PLN"; name: "gray"; rate: "7.71" }
-//                   ListElement { shortName: "BRL"; name: "yellow"; rate: "17.88" }
-//                   ListElement { shortName: "TJS"; name: "blue"; rate: "5.72" }
-//                   ListElement { shortName: "RUB"; name: "orange"; rate: "7.73" }
-//                   ListElement { shortName: "RSD"; name: "orange"; rate: "4.62" }
-//                   ListElement { shortName: "BYN"; name: "yellow"; rate: "3.12" }
-//                   ListElement { shortName: "DZD"; name: "lightBlue"; rate: "2.64" }
-//                   ListElement { shortName: "AZN"; name: "lightBlue"; rate: "8.35" }
-//               }
-//        }
-
-//        XmlListModel {
-//            id: xmlModel
-//            source: "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange"
-//            query: "/exchange/currency"
-
-//            XmlRole { name: "txt"; query: "txt/string()" }
-//            XmlRole { name: "rate"; query: "rate/string()" }
-//            XmlRole { name: "cc"; query: "cc/string()" }
-//        }
-
-//            QListModel{
-//                id: dataModel
-
-//            }
-
             ListView {
                 id: listView
                 Layout.preferredWidth: columnLayout.width
                 Layout.fillHeight: true
-                model: myListModel
+                clip : true
+                model: MyProxyModel
                 spacing: 15
                 delegate: ItemDelegate {
                     Rectangle {
                         id: currency
                         width: columnLayout.width
-                        height: 50
-                        color: "grey"
-                        radius: 10
-
+                        height: 55
+                        color: "#424242"
+                        radius: 7
                         ColumnLayout {
                             id: currencyColumnLayout
+                            width: currency.width
                             anchors.fill: parent
                             anchors.leftMargin: 5
-                            spacing: -25
-
+                            anchors.rightMargin: 5
                             RowLayout {
                                 id: currencyRowLayout
                                 anchors.fill: parent
                                 width: currency.width
+                                height: currency.height
                                 Text {
                                     font.pointSize: 18
                                     font.bold: true
                                     text: shortName
+                                    color: "#013ADF"
                                 }
                                 Text {
                                     anchors.horizontalCenter: currencyRowLayout.horizontalCenter
                                     font.pointSize: 18
                                     font.bold: true
                                     text: rate
+                                    color: "#E6E6E6"
+                                }
+                                Text {
+                                    anchors.right: currencyRowLayout.right
+                                    font.pointSize: 12
+                                    text: rateDifference
+                                    color: rateDifference >= 0 ? "#00FF00" : "red"
                                 }
                             }
                             Text {
                                 font.pointSize: 12
                                 font.bold: true
                                 text: name
+                                color: "#0080FF"
                             }
                         }
                     }

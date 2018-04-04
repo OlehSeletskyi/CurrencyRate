@@ -5,17 +5,16 @@
 #include <QStringList>
 #include <coin.h>
 
-//#include <QObject>
-//#include <QQmlListProperty>
-
 class MyListModel : public QAbstractListModel
 {
     Q_OBJECT
+
 public:
     enum Roles {
         NameRole = Qt::UserRole + 1,
         ShortNameRole,
-        RateRole
+        RateRole,
+        RateDifferenceRole
     };
 
     MyListModel(QObject *parent = 0);
@@ -25,6 +24,9 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+
+//signals:
+//    void dataChanged();
 
 protected:
     QHash<int,QByteArray> roleNames() const;
