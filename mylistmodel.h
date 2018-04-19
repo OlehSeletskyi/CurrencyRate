@@ -25,9 +25,6 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
-//signals:
-//    void dataChanged();
-
 protected:
     QHash<int,QByteArray> roleNames() const;
 

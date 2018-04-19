@@ -23,13 +23,11 @@ int main(int argc, char *argv[])
     app.setWindowIcon(QIcon("F:/QtProjects/CurrencyRate/dolar.png"));
 
     auto myProxyModel = new MyProxyModel(myListModel);
-//    detailsProxyModel->setFilterRole( MyListModel::Roles::ShortNameRole);
-//    detailsProxyModel->setFilterFixedString("US");
-//    detailsProxyModel->setSourceModel( myListModel );
 
     QQmlApplicationEngine engine;
 
-    engine.rootContext()->setContextProperty(QStringLiteral("MyDownloader"), &myDownloader);
+
+    engine.rootContext()->setContextProperty(QStringLiteral("myDownloader"), &myDownloader);
     engine.rootContext()->setContextProperty(QStringLiteral("myListModel"), myListModel);
     engine.rootContext()->setContextProperty("MyProxyModel", myProxyModel );
 

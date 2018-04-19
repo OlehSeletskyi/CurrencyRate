@@ -8,47 +8,35 @@ Window {
     visible: true
     width: 300
     height: 380
-//    maximumWidth: 250
-//    maximumHeight: 380
     minimumWidth: 300
     minimumHeight: 380
     title: qsTr("Currency Rate")
     color: "#e0e0e0"
 
+//    property var tempDate: new Date();
+
 
     StackView {
-            id: stackView
-            anchors.fill: parent
-            focus: true
-            initialItem: startPageStackComponent
+        id: stackView
+        anchors.fill: parent
+        focus: true
+        initialItem: startPageStackComponent
 
+        Component {
+            id: startPageStackComponent
 
-            Component {
-                id: startPageStackComponent
-
-                StartPage {
-                    id:startPage
-//                    anchors.fill: parent
-//                    enabled: Stack.status === Stack.Active
-                }
-
+            StartPage {
+                id:startPage
             }
+        }
 
-            Component {
-                id: mainPageStackComponent
+        Component {
+            id: mainPageStackComponent
 
-                MainPage {
-                    id: mainPage
-//                    anchors.fill: parent
-                }
-
-
+            MainPage {
+                id: mainPage
             }
+        }
     }
-
-
-
-
-
 }
 

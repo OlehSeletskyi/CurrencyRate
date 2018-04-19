@@ -8,17 +8,15 @@ Item {
 
     ColumnLayout {
         id: columnLayout
-        spacing: 10
+        spacing: 5
         anchors.fill: parent
-//        anchors.margins: 5
         Rectangle {
             Layout.preferredWidth: columnLayout.width
-            height: 60
+            height: 40
             color: "#00867d"
             RowLayout {
                 id: rowlayout
                 Layout.preferredWidth: columnLayout.width
-
                 MyButton {
                     id: back
                     height: 25
@@ -51,8 +49,9 @@ Item {
         }
         TextField {
             id: findCurrency
-            Layout.preferredWidth: myitem.width - 10
+            Layout.fillWidth: true
             Layout.leftMargin: 5
+            Layout.rightMargin: 5
             font.pointSize: 12
             placeholderText: "Пошук валюти"
             onTextChanged: {
@@ -61,9 +60,10 @@ Item {
         }
         ListView {
             id: listView
-            Layout.preferredWidth: myitem.width - 10
+            Layout.fillWidth:  true
             Layout.fillHeight: true
             Layout.leftMargin: 5
+            Layout.rightMargin: 5
             clip : true
             spacing: 15
 
