@@ -7,5 +7,7 @@
         <file>StartPage.qml</file>
         <file>MainPage.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>backButton.png</file>
+        <file>backButtonHover.png</file>
     </qresource>
 </RCC>

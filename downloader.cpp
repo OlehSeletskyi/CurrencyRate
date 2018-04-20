@@ -47,11 +47,11 @@ void Downloader::setModelName(MyListModel *myListModel)
 {
     listModel = myListModel;
 }
-void Downloader::setSelectedDate(QString selectedDate)
+void Downloader::setSelectedDate(QString strDate)
 {
-
-    selectedDate = selectedDate.left(selectedDate.indexOf('T'));
-    mSelectedDate = QDate::fromString(selectedDate, "yyyy-MM-dd");
+    listModel->clearModel();
+    strDate = strDate.left(strDate.indexOf('T'));
+    mSelectedDate = QDate::fromString(strDate, "yyyy-MM-dd");
 
     qDebug() << mSelectedDate;
 
@@ -59,9 +59,12 @@ void Downloader::setSelectedDate(QString selectedDate)
     download(mSelectedDate);
 }
 
+QString Downloader::selectedDate() const
+{
+    return mSelectedDate.toString("dd.MM.yyyy");
+}
+
 void Downloader::writeModel() {
-
-
     if(mPreviousDate.toString().isEmpty())
     {
         mPreviousDate = mSelectedDate.addDays(-1);

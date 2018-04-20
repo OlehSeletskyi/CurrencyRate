@@ -25,6 +25,8 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
+    Q_INVOKABLE void clearModel();
+
 protected:
     QHash<int,QByteArray> roleNames() const;
 

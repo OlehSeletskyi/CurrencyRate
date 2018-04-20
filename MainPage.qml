@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
+import QtQuick.Controls.Styles 1.4
 import QtQuick.XmlListModel 2.0
 
 Item {
@@ -11,40 +12,44 @@ Item {
         spacing: 5
         anchors.fill: parent
         Rectangle {
+            id: myRectangle
             Layout.preferredWidth: columnLayout.width
             height: 40
             color: "#00867d"
-            RowLayout {
-                id: rowlayout
-                Layout.preferredWidth: columnLayout.width
-                MyButton {
-                    id: back
-                    height: 25
-                    width: 25
-                    Layout.alignment: Qt.AlignLeft
 
-                    color: "transparent"
-                    hoverColor: "#82e9de"
-                    pressColor: "#82e9de"
+            MyButton {
+                id: back
+                height: 30
+                width: 30
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.leftMargin: 5
 
-                    fontSize: 18
-                    borderRadius: 15
-                    borderWidth: 0
+                color: "transparent"
+                hoverColor: "transparent"
+                pressColor: "transparent"
 
-                    buttonText: "<"
-                    onClicked: {
-                        stackView.push(startPageStackComponent)
-                    }
+                borderRadius: 0
+                borderWidth: 0
+
+                sourceImage: "backButton.png"
+                sourceImageHover: "backButtonHover.png"
+                onClicked: {
+                    MyProxyModel.setFilterFixedString("")
+                    stackView.pop()
                 }
+            }
 
-                Text {
-                    id: currencyRate
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                    font.pointSize: 20
-                    font.bold: true
-                    text: "Курс валюти"
-                    color: "#FAFAFA"
-                }
+            Text {
+                id: currencyRate
+//                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.rightMargin: 10
+                font.pointSize: 12
+                font.bold: true
+                text: "Курс валют на "  +  selectedDate
+                color: "#FAFAFA"
             }
         }
         TextField {

@@ -6,13 +6,16 @@ Item {
     width: 30
     height: 30
     property alias buttonText: innerText.text;
+    property alias sourceImage: visualImage.source
+    property string sourceImageHover
     property color color: "white"
     property color hoverColor: "#aaaaaa"
     property color pressColor: "slategray"
     property int fontSize: 10
     property int borderWidth: 1
     property int borderRadius: 25
-    scale: state === "Pressed" ? 0.96 : 1.0
+
+    scale: state === "Pressed" ? 0.9 : 1.0
     onEnabledChanged: state = ""
     signal clicked
 
@@ -36,12 +39,23 @@ Item {
         border.width: borderWidth
         border.color: "black"
 
+        Image
+        {
+            id: visualImage
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+            sourceSize.width: button.width
+            sourceSize.height: button.height
+        }
+
         Text
         {
             id: innerText
             font.pointSize: fontSize
             anchors.centerIn: parent
         }
+
     }
 
     //change the color of the button in differen button states
@@ -52,12 +66,18 @@ Item {
                 target: rectangleButton
                 color: hoverColor
             }
+            PropertyChanges {
+                target: visualImage
+                source: sourceImageHover
+            }
         },
         State {
             name: "Pressed"
             PropertyChanges {
                 target: rectangleButton
                 color: pressColor
+
+
             }
         }
     ]
