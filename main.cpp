@@ -16,27 +16,21 @@ int main(int argc, char *argv[])
 #endif
 
     QGuiApplication app(argc, argv);
-    auto myListModel = new MyListModel();
+    QQmlApplicationEngine engine;
+
+    MyListModel *myListModel = new MyListModel(&engine);
     Downloader myDownloader;
     myDownloader.setModelName(myListModel);
-
-    qDebug() << "listModel->rowCount" << myListModel->rowCount();
-
 
     app.setWindowIcon(QIcon("qrc:/dolar.png"));
 
     auto myProxyModel = new MyProxyModel(myListModel);
 
-    QQmlApplicationEngine engine;
-
-
     engine.rootContext()->setContextProperty(QStringLiteral("myDownloader"), &myDownloader);
-    engine.rootContext()->setContextProperty(QStringLiteral("myListModel"), myListModel);
+    engine.rootContext()->setContextProperty("myListModel", myListModel);
     engine.rootContext()->setContextProperty("MyProxyModel", myProxyModel );
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-
-
 
     if (engine.rootObjects().isEmpty())
         return -1;

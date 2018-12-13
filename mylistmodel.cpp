@@ -21,7 +21,7 @@ int MyListModel::rowCount(const QModelIndex &parent) const
 
 QVariant MyListModel::data(const QModelIndex &index, int role) const
 {
-    if(index.isValid() || index.row() >= mCoins.count())
+    if(!index.isValid() || index.row() < 0 || index.row() >= mCoins.count())
     {
         return QVariant();
     }
@@ -40,6 +40,11 @@ QVariant MyListModel::data(const QModelIndex &index, int role) const
     default:
         return QVariant();
     }
+}
+
+Coin MyListModel::getCoin(int element)
+{
+    return mCoins.at(element);
 }
 
 void MyListModel::clearModel()

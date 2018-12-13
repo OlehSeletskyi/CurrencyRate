@@ -15,7 +15,6 @@ Downloader::Downloader(QObject *parent) : QObject(parent)
 {
      networkManager = new QNetworkAccessManager(this);
      connect(networkManager, &QNetworkAccessManager::finished, this, &Downloader::onResult);
-     //    connect(networkManager, &QNetworkAccessManager::finished, this, &Downloader::writeModel);
 }
 
 void Downloader::setModelName(MyListModel *myListModel)
@@ -25,13 +24,12 @@ void Downloader::setModelName(MyListModel *myListModel)
 
 void Downloader::setSelectedDate(QString strDate)
 {
+
     listModel->clearModel();
-    qDebug() << "strDate" << strDate;
     strDate = strDate.left(strDate.indexOf('T'));
     mSelectedDate = QDate::fromString(strDate, "yyyy-MM-dd");
 
     mPreviousDate = QDate();
-    qDebug() << "setSelectedDate->";
     download(mSelectedDate);
 }
 
@@ -43,14 +41,12 @@ QString Downloader::selectedDate() const
 void Downloader::download(QDate date)
 {
     QString strDate = date.toString("yyyyMMdd");
-    qDebug() << "strDate" << strDate;
     networkManager->get(QNetworkRequest(QUrl("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date="
                                              + strDate + "&json")));
 }
 
 void Downloader::onResult(QNetworkReply *reply)
 {
-    qDebug() << "onResult";
     if(!reply->error())
     {
         QJsonDocument document = QJsonDocument::fromJson(reply->readAll());
@@ -62,22 +58,12 @@ void Downloader::onResult(QNetworkReply *reply)
         {
             jsonArrayPreviousDay = document.array();
         }
-        qDebug() << "jsonArray" << document;
     }
     reply->deleteLater();
     writeModel();
-//    for (int i = 0; i < listModel->rowCount(); ++i)
-//    {
-//        QModelIndex modelIndex;
-//        modelIndex.child(i, 0);
-////        qDebug() << "Coin: " << i << " " << listModel->data(modelIndex, MyListModel::Roles::NameRole);
-//    }
 }
 
-
-
 void Downloader::writeModel() {
-//    qDebug() << "writeModel" << mPreviousDate << jsonArray << jsonArrayPreviousDay;
     if(mPreviousDate.toString().isEmpty())
     {
         mPreviousDate = mSelectedDate.addDays(-1);
@@ -107,7 +93,6 @@ void Downloader::writeModel() {
             listModel->addCoin(coin);
         }
     }
-    qDebug() << "rowCount" << listModel->rowCount();
 }
 
 QObject *Downloader::getListModel() const

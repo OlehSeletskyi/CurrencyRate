@@ -2,7 +2,6 @@
 #define MYLISTMODEL_H
 
 #include <QAbstractListModel>
-//#include <QStringList>
 #include <coin.h>
 
 class MyListModel : public QAbstractListModel
@@ -25,6 +24,8 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+
+    Coin getCoin(int element);
 
     Q_INVOKABLE void clearModel();
 

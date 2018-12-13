@@ -58,8 +58,9 @@ Item {
             Layout.rightMargin: 5
             font.pointSize: 12
             placeholderText: "Пошук валюти"
-            onTextChanged: {
-                MyProxyModel.setFilterFixedString(text)
+            onDisplayTextChanged:
+            {
+                MyProxyModel.setFilterFixedString(displayText)
             }
         }
         ListView {
@@ -70,17 +71,9 @@ Item {
             Layout.rightMargin: 5
             clip : true
             spacing: 15
+            model: MyProxyModel
 
-            Component.onCompleted: {
-                console.log("BBBBBBBBBBBBBB", myListModel)
-                console.log("EEEEE", myListModel.rowCount())
-                console.log("AAAAAAAAAAAAA", listView.count)
-                console.log("CCCCC", myDownloader.getListModel())
-            }
-
-            model: myListModel//myDownloader.getListModel()
-
-            delegate: ItemDelegate {
+            delegate: Component {
                 Rectangle {
                     id: currency
                     width: listView.width

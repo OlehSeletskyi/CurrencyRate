@@ -6,8 +6,8 @@ import QtQuick.Controls 2.2
 
 Window {
     visible: true
-    width: 300
-    height: 380
+    width: 350
+    height: 480
     minimumWidth: 300
     minimumHeight: 380
     title: qsTr("Currency Rate")

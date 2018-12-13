@@ -12,13 +12,6 @@ Item {
         anchors.fill: parent
         anchors.margins: 5
 
-//        Image {
-//            Layout.alignment: Qt.AlignHCenter
-//            source: "ico-money.png"
-//            sourceSize.width: 250
-//            sourceSize.height: 250
-//        }
-
         Calendar {
                 id: calendar
                 Layout.preferredWidth: columnLayout.width
@@ -70,7 +63,7 @@ Item {
 
         MyButton
         {
-            id: ok
+            id: look
             height: 50
             width: 150
             Layout.alignment: Qt.AlignHCenter
@@ -85,27 +78,6 @@ Item {
             {
                 myDownloader.selectedDate = calendar.selectedDate
                 selectedDate = myDownloader.selectedDate
-//                stackView.push(mainPageStackComponent)
-            }
-        }
-
-        MyButton
-        {
-            id: look
-            height: 50
-            width: 150
-            Layout.alignment: Qt.AlignHCenter
-
-            borderWidth: 0
-            hoverColor: "#00867d"
-            pressColor: "#00867d"
-            fontSize: 18
-
-            buttonText: "Гледіти"
-            onClicked:
-            {
-//                myDownloader.selectedDate = calendar.selectedDate
-//                selectedDate = myDownloader.selectedDate
                 stackView.push(mainPageStackComponent)
             }
         }

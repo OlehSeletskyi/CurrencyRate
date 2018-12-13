@@ -26,7 +26,7 @@ bool MyProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_pa
             nameRole = nameRole.toLower();
             QString shortNameRole = valueShortNameRole.toString();
             shortNameRole = shortNameRole.toLower();
-            if(valueNameRole.isValid() && valueShortNameRole.isValid())
+            if(valueNameRole.isValid() || valueShortNameRole.isValid())
             {
                if(nameRole.indexOf(findText) >= 0 || shortNameRole.indexOf(findText) >= 0)
                {
