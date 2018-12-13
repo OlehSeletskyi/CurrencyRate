@@ -67,6 +67,28 @@ Item {
                     }
 
         }
+
+        MyButton
+        {
+            id: ok
+            height: 50
+            width: 150
+            Layout.alignment: Qt.AlignHCenter
+
+            borderWidth: 0
+            hoverColor: "#00867d"
+            pressColor: "#00867d"
+            fontSize: 18
+
+            buttonText: "OK"
+            onClicked:
+            {
+                myDownloader.selectedDate = calendar.selectedDate
+                selectedDate = myDownloader.selectedDate
+//                stackView.push(mainPageStackComponent)
+            }
+        }
+
         MyButton
         {
             id: look
@@ -82,9 +104,9 @@ Item {
             buttonText: "Гледіти"
             onClicked:
             {
+//                myDownloader.selectedDate = calendar.selectedDate
+//                selectedDate = myDownloader.selectedDate
                 stackView.push(mainPageStackComponent)
-                myDownloader.selectedDate = calendar.selectedDate
-                selectedDate = myDownloader.selectedDate
             }
         }
     }

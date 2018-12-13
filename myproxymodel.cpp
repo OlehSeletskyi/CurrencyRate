@@ -3,7 +3,7 @@
 
 MyProxyModel::MyProxyModel(MyListModel* model)
 {
-    this->setSourceModel(model);
+    setSourceModel(model);
 }
 
 MyProxyModel::~MyProxyModel()
@@ -37,5 +37,3 @@ bool MyProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_pa
     }
     return ret;
 }
-
-

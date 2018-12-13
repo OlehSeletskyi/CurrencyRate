@@ -57,7 +57,7 @@ void Coin::setRate(QString rate)
 
 void Coin::setRateDifference(QString rateDifference)
 {
-    if(mRateDifference == rateDifference)
+    if(mRateDifference != rateDifference)
     {
         return;
     }

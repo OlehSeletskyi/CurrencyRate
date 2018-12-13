@@ -21,11 +21,11 @@ int MyListModel::rowCount(const QModelIndex &parent) const
 
 QVariant MyListModel::data(const QModelIndex &index, int role) const
 {
-    if(index.row() < 0 || index.row() >= mCoins.count())
+    if(index.isValid() || index.row() >= mCoins.count())
     {
         return QVariant();
     }
-    const Coin &coin = mCoins[index.row()];
+    const Coin &coin = mCoins.at(index.row());
 
     switch (role) {
     case NameRole:

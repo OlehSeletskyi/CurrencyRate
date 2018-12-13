@@ -42,7 +42,6 @@ Item {
 
             Text {
                 id: currencyRate
-//                anchors.horizontalCenter: parent.horizontalCenter
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.rightMargin: 10
@@ -72,7 +71,14 @@ Item {
             clip : true
             spacing: 15
 
-            model: MyProxyModel
+            Component.onCompleted: {
+                console.log("BBBBBBBBBBBBBB", myListModel)
+                console.log("EEEEE", myListModel.rowCount())
+                console.log("AAAAAAAAAAAAA", listView.count)
+                console.log("CCCCC", myDownloader.getListModel())
+            }
+
+            model: myListModel//myDownloader.getListModel()
 
             delegate: ItemDelegate {
                 Rectangle {

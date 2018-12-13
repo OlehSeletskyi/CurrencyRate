@@ -2,7 +2,7 @@
 #define MYLISTMODEL_H
 
 #include <QAbstractListModel>
-#include <QStringList>
+//#include <QStringList>
 #include <coin.h>
 
 class MyListModel : public QAbstractListModel
@@ -16,19 +16,20 @@ public:
         RateRole,
         RateDifferenceRole
     };
+    Q_ENUM(Roles)
 
-    MyListModel(QObject *parent = 0);
+    MyListModel(QObject *parent = nullptr);
 
     void addCoin(const Coin &coin);
 
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     Q_INVOKABLE void clearModel();
 
 protected:
-    QHash<int,QByteArray> roleNames() const;
+    QHash<int,QByteArray> roleNames() const override;
 
 private:
     QList<Coin> mCoins;

@@ -18,6 +18,8 @@ public:
     void setSelectedDate(QString strDate);
     QString selectedDate() const;
 
+    Q_INVOKABLE QObject *getListModel() const;
+
 private slots:
     void download(QDate date);
     void onResult(QNetworkReply *reply);

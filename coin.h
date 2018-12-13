@@ -13,6 +13,7 @@ public:
     QString shortName() const;
     QString rate() const;
     QString rateDifference() const;
+
     void setName(QString name);
     void setShortName(QString shortName);
     void setRate(QString rate);

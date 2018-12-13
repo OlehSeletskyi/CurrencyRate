@@ -20,7 +20,10 @@ int main(int argc, char *argv[])
     Downloader myDownloader;
     myDownloader.setModelName(myListModel);
 
-    app.setWindowIcon(QIcon("F:/QtProjects/CurrencyRate/dolar.png"));
+    qDebug() << "listModel->rowCount" << myListModel->rowCount();
+
+
+    app.setWindowIcon(QIcon("qrc:/dolar.png"));
 
     auto myProxyModel = new MyProxyModel(myListModel);
 

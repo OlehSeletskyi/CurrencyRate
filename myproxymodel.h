@@ -10,7 +10,7 @@ class MyProxyModel : public QSortFilterProxyModel
 
     Q_OBJECT
 public:
-    MyProxyModel(MyListModel *model);
+    explicit MyProxyModel(MyListModel *model = nullptr);
     virtual ~MyProxyModel();
 
     bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
